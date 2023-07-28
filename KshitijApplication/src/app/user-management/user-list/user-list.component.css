@@ -1,0 +1,225 @@
+.btn-light-clr {
+    border-radius: 22px;
+    background-color: #FEEEE5;
+    color: #ED953D;
+}
+
+
+
+.small-btn-padding {
+    padding: 8px 50px !important;
+}
+
+.card-radius {
+    border-radius: 22px !important;
+}
+
+.btn-dark-clr {
+    border-radius: 15px;
+    background-color: #3277dc;
+    color: #FFFFFF;
+}
+
+.pDiv {
+    padding: 1.5rem !important;
+}
+
+::ng-deep.mat-tab-body-content {
+    overflow: hidden !important;
+}
+
+::ng-deep.ui-table .ui-paginator-bottom {
+    width: auto !important;
+}
+
+/* ::ng-deep body .ui-table .ui-sortable-column.ui-state-highlight {
+    font-size: 8px !important;
+    }
+    ::ng-deep body .ui-table .ui-table-thead > tr > th {
+    font-size: 8px !important;
+    } */
+::ng-deep.mat-tab-group.mat-primary .mat-ink-bar {
+    border: 2px solid #2270EE !important;
+    color: #2270EE !important;
+}
+
+/* ::ng-deep.mat-tab-label:active{
+    color: #2270EE !important;
+    } */
+.buttons-border {
+    padding: .25rem 1rem !important;
+    border-radius: 22px !important;
+    border: none !important;
+    color: #272727 !important;
+    background-color: #F3F1F1 !important;
+}
+
+.form-control-sm {
+    min-height: 0 !important
+}
+
+.search-by {
+    border-radius: 15px;
+    background: #F3F1F1;
+}
+
+tr.mat-header-row {
+    height: 36px;
+}
+
+tr.mat-row {
+    height: 36px;
+}
+
+.th {
+    background-color: #f5f8fa;
+    color: #01487c;
+    font-size: 12px !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+}
+
+.td {
+    text-align: center !important;
+    margin: auto !important;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+    font-size: 12px !important;
+    font-weight: bold !important;
+    justify-content: center;
+}
+
+tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #fcfcfc;
+}
+
+
+/* pagination css start*/
+
+::ng-deep .mat-paginator-range-actions {
+    display: flex;
+    align-items: center;
+    background-color: #f7f7f7;
+    /* border: 1px solid #dbf0ff; */
+    padding: 0px 0px 8px 0px;
+    border-radius: 0px 8px 8px 0px
+}
+
+::ng-deep .mat-paginator-page-size {
+    display: flex;
+    align-items: baseline;
+    margin-right: 0px !important;
+    background-color: #f7f7f7;
+    /* border: 1px solid #dbf0ff; */
+    padding-bottom: 8px !important;
+    border-radius: 8px 0px 0px 8px
+        /* margin-top: -10px; */
+}
+
+::ng-deep .mat-paginator-icon {
+    width: 28px;
+    fill: currentColor;
+    color: #fff;
+    background-color: #4ea0df;
+    border-radius: 8px;
+}
+
+::ng-deep .mat-paginator-page-size-label {
+    margin: 0 4px;
+    font-weight: bold !important;
+    background-color: #cae7fd;
+    border-radius: 5px;
+    /* border: 1px solid blue; */
+    padding: 5px;
+    color: #0719ff;
+    display: none !important;
+}
+
+::ng-deep .mat-form-field-infix {
+    padding: 0.5em 0;
+    border-top: 0;
+}
+
+::ng-deep .mat-paginator-page-size-select {
+    margin: 0px !important;
+    width: 46px !important;
+    padding-top: 10px !important;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+    padding-bottom: 0;
+    padding-top: 3px;
+    background-color: #cae7fd;
+    border-radius: 5px;
+    /* border: 1px solid blue; */
+}
+
+::ng-deep .mat-form-field {
+    font-size: inherit;
+    font-weight: 400;
+    line-height: none;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+::ng-deep .mat-paginator,
+.mat-paginator-page-size .mat-select-trigger {
+    font-size: 12px;
+    font-family: 'myFirstFont' !important;
+    font-weight: bold !important;
+}
+
+::ng-deep .mat-select-value {
+    /* color: #0819ff !important;
+    font-weight: bold !important; */
+}
+
+::ng-deep .mat-select-arrow {
+    color: #0819ff !important;
+    margin: -4px 8px 0 0 !important;
+}
+
+::ng-deep .mat-paginator,
+.mat-paginator-page-size .mat-select-trigger {
+    font-family: 'myFirstFont' !important;
+    font-size: 12px;
+}
+
+::ng-deep .mat-paginator-range-label {
+    margin: 0px 0px 0px 5px !important;
+    margin-top: 9px !important;
+    padding: 6px;
+    background-color: #cae7fd;
+    /* border: 1px solid blue; */
+    border-radius: 8px;
+    color: #0819ff !important;
+    font-weight: bold !important;
+}
+
+::ng-deep .mat-icon-button {
+    padding: 4px 0px 0px 0px !important;
+    width: 30px !important;
+}
+
+::ng-deep .mat-paginator-container {
+    padding: 0px !important;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+    padding-bottom: 0px;
+    padding-top: 8px;
+    padding-left: 10px !important;
+    background-color: #cae7fd;
+    border-radius: 7px;
+}
+
+/* pagination css end*/
+::ng-deep .mat-form-field-underline {
+    background-color: transparent !important;
+    ;
+}

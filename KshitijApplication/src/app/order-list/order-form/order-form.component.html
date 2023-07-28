@@ -1,0 +1,507 @@
+<p>order-form works!</p>
+<div class="container-fluid">
+    <div class="mainrow">
+        <div class="card card-view card-radius px-0 bg-light">
+            <div class="d-flex justify-content-between mt-2 align-items-center px-4">
+                <div class="all-acnt">
+                    <div class="d-flex align-items-center">
+                        <h5><i class="fa fa-chevron-left" style="color:orange;"></i>
+                            <button class="backBtn bg-light" (click)="goBack()"> Back</button>
+                            Order Form
+                        </h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body mt-0 pt-0">
+                <div class="row m-0">
+                    <form [formGroup]="FormData">
+
+                        <div class="d-flex align-items-center ">
+
+                            <div class="col-sm-1 form-group">
+                                <label for="staticEmail" class="lbC my-2">
+                                    Order No.<span class="required">*</span>
+                                    <!-- <validation-error-msg class="col-sm-2" [erorrMsg]="formErrors.partyId">
+    </validation-error-msg> -->
+                                </label><br>
+                                <input type="text" class="custom-select-img custom-select-sm"
+                                    formControlName="orderNo" />
+                                <!-- <label for="staticEmail" class="lbsp"> {{partyIdPatch}} </label> -->
+                            </div>
+                            <div class="col-sm-4 form-group">
+                                <label for="staticEmail" class="lbC my-2">
+                                    Party Name<span class="required">*</span>
+                                    <!-- <validation-error-msg class="col-sm-2" [erorrMsg]="formErrors.partyId">
+    </validation-error-msg> -->
+                                </label><br>
+
+
+
+
+                                <!-- <input type="text" formControlName="partyName" aria-label="Party Name" [matAutocomplete]="auto2"
+    class="custom-select custom-select-sm" [maxLength]="50" (ngModelChange)="isPincodeChange = true"
+    (focusout)="isPincodeChange = false" (focus)="isPincodeChange = false">
+    <mat-autocomplete #auto2="matAutocomplete" [displayWith]="pincodeDisplayFn">
+    <mat-option *ngFor="let option of partyTypeList" [value]="option.id">
+    {{ option.name }}
+    </mat-option>
+    <mat-option *ngIf="!partyTypeList.length && isPincodeChange" disabled>
+    Pincode doesn't exist, please contact the admin
+    </mat-option>
+    </mat-autocomplete> -->
+
+
+                                <!-- <input type="text" placeholder="US State" aria-label="Number" matInput formControlName="partyName" class="custom-select custom-select-sm" [maxLength]="50"
+    [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let state of partyTypeList" [value]="state.id">
+    {{state.name}}
+    </mat-option>
+    </mat-autocomplete> -->
+                                <!-- <label for="staticEmail" class="lbsp"> {{partyIdPatch}} </label> -->
+
+                                <!-- <input type="text" formControlName="orderNo" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+    <mat-option *ngFor="let option of partyTypeList" [value]="option.id">
+    {{ option.name }}
+    </mat-option>
+    </mat-autocomplete> -->
+
+                                <!-- <select class="custom-select custom-select-sm" formControlName="partyName" (change)="partySelection($event)" >
+    <option value="">--Select--</option>
+    <option *ngFor = 'let item of partyTypeList2' [value]="item.id">{{item.value}}</option>
+    </select> -->
+
+                                <ng-multiselect-dropdown formControlName="partyName" class="customClass"
+                                    [settings]="dropdownSettings2" [data]="partyTypeList"
+                                    (onSelect)="partySelection($event)">
+                                    <!-- [formControl]="categoryFilter" -->
+
+                                </ng-multiselect-dropdown>
+
+                            </div>
+
+                            <div class="col-sm-3 form-group">
+                                <label for="staticEmail" class="lbC my-2">
+                                    GSTIN No<span class="required">*</span>
+                                    <!-- <validation-error-msg class="col-sm-2" [erorrMsg]="formErrors.partyId">
+    </validation-error-msg> -->
+                                </label><br>
+                                <input type="text" class="custom-select-img custom-select-sm"
+                                    formControlName="gstinNo" />
+                                <!-- <label for="staticEmail" class="lbsp"> {{partyIdPatch}} </label> -->
+                            </div>
+
+                            <div class="col-sm-4">
+
+                                <label for="staticEmail" class="lbC d-flex align-items-center my-0">
+                                    Date<span class="required">*</span>
+                                    <i class="fa fa-info-circle" style="font-size:14px; margin-left: 5px;"></i>
+                                    <!-- <validation-error-msg *ngIf="FormData.get('leiexpiry').touched" [erorrMsg]="formErrors.leiexpiry">
+    </validation-error-msg> -->
+                                    <!-- <mat-error *ngIf="FormData.get('leiexpiry').errors && FormData.get('leiexpiry').touched " style="margin-top: -6px !important;">
+    <mat-icon matTooltip="{{FormData.get('leiexpiry').errors['invalidDate']}}"><i class="bi bi-exclamation-triangle"
+    style="font-size: 0.75em;color:red;"></i></mat-icon>
+    </mat-error> -->
+                                </label>
+
+
+
+                                <!-- <mat-icon *ngIf="FormData.controls.leiexpiry.invalid || (FormData.controls.leiexpiry.errors)" matTooltip="please select current/future date"><i class="bi bi-exclamation-triangle"
+    style="font-size: 0.75em;color:red;"></i></mat-icon> -->
+
+                                <input [matDatepicker]="emiStartDate" class="form-control"
+                                    class="custom-select-img custom-select-sm" style="width: 85%;"
+                                    formControlName="orderDate" [min]="today" readonly>
+                                <mat-datepicker-toggle matSuffix [for]="emiStartDate">
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #emiStartDate style="width: 50%;"></mat-datepicker>
+
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="mt-4 my-1"><label class="bg-light" style="color: orange;">
+                                Party Address
+                            </label></div>
+                        <div class="d-flex align-items-center mt-0">
+
+
+                            <div class="col-sm-3 mt-0">
+                                <label for="staticEmail" class="lbsp">
+                                    Address Line1<span class="required">*</span>
+                                    <!-- <validation-error-msg class="col-sm-2" [erorrMsg]="formErrors.partyId">
+    </validation-error-msg> -->
+                                </label><br>
+                                <input type="text" class="custom-select-img custom-select-sm" formControlName="line1" />
+                                <!-- <label for="staticEmail" class="lbsp"> {{partyIdPatch}} </label> -->
+                            </div>
+
+                            <div class="col-sm-3 mt-0">
+                                <label for="staticEmail" class="lbsp">
+                                    Address Line2<span class="required">*</span>
+                                    <!-- <validation-error-msg class="col-sm-2" [erorrMsg]="formErrors.partyId">
+    </validation-error-msg> -->
+                                </label><br>
+                                <input type="text" class="custom-select-img custom-select-sm" formControlName="line2" />
+                                <!-- <label for="staticEmail" class="lbsp"> {{partyIdPatch}} </label> -->
+                            </div>
+
+                            <div class="col-sm-3 mt-0">
+                                <label for="staticEmail" class="lbsp">
+                                    Address Line3
+                                    <!-- <validation-error-msg class="col-sm-2" [erorrMsg]="formErrors.partyId">
+    </validation-error-msg> -->
+                                </label><br>
+                                <input type="text" class="custom-select-img custom-select-sm" formControlName="line3" />
+                                <!-- <label for="staticEmail" class="lbsp"> {{partyIdPatch}} </label> -->
+                            </div>
+
+
+
+                            <div class="col-sm-3 mt-0">
+                                <label for="staticEmail" class="lbsp">
+                                    Address Line4
+                                    <!-- <validation-error-msg class="col-sm-2" [erorrMsg]="formErrors.partyId">
+    </validation-error-msg> -->
+                                </label><br>
+                                <input type="text" class="custom-select-img custom-select-sm" formControlName="line4" />
+                                <!-- <label for="staticEmail" class="lbsp"> {{partyIdPatch}} </label> -->
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center mt-0">
+                            <div class="col-sm-3 mt-0">
+                                <label for="staticEmail" class="lbsp">
+                                    PinCode<span class="required">*</span>
+                                    <!-- <validation-error-msg class="col-sm-2" [erorrMsg]="formErrors.partyId">
+    </validation-error-msg> -->
+                                </label><br>
+                                <input type="text" class="custom-select-img custom-select-sm"
+                                    formControlName="pincode" />
+                                <!-- <label for="staticEmail" class="lbsp"> {{partyIdPatch}} </label> -->
+                            </div>
+                            <div class="col-sm-3 mt-0">
+                                <label for="staticEmail" class="lbsp">
+                                    State<span class="required">*</span>
+                                    <!-- <validation-error-msg class="col-sm-2" [erorrMsg]="formErrors.partyId">
+    </validation-error-msg> -->
+                                </label><br>
+                                <input type="text" class="custom-select-img custom-select-sm" formControlName="state" />
+                                <!-- <label for="staticEmail" class="lbsp"> {{partyIdPatch}} </label> -->
+                            </div>
+                            <div class="col-sm-3 mt-0">
+                                <label for="staticEmail" class="lbsp">
+                                    Country<span class="required">*</span>
+                                    <!-- <validation-error-msg class="col-sm-2" [erorrMsg]="formErrors.partyId">
+    </validation-error-msg> -->
+                                </label><br>
+                                <input type="text" class="custom-select-img custom-select-sm"
+                                    formControlName="country" />
+                                <!-- <label for="staticEmail" class="lbsp"> {{partyIdPatch}} </label> -->
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="staticEmail" class="lbsp">
+                                    Is Delivery Address Same? :
+                                    <!-- <validation-error-msg [erorrMsg]="formErrors.isPrimaryAddress">
+    </validation-error-msg> -->
+                                    <!-- <mat-error class="pl-1" *ngIf="FormData.get('isPrimaryAddress').errors ">
+    <mat-icon matTooltip="Please select type of id proof"><i class="bi bi-exclamation-triangle"
+    style="font-size: 0.75em;color:red;"></i></mat-icon>
+    </mat-error> -->
+                                </label>
+                                <div class="">
+                                    <mat-slide-toggle formControlName="isDeliveryAddressSame"
+                                        (change)="onAddressToggleChange()" color="primary"></mat-slide-toggle>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="mt-4 my-1" *ngIf="!this.FormData.get('isDeliveryAddressSame')?.value"><label
+                                class="bg-light" style="color: orange;">
+                                Deliver Address
+                            </label></div>
+                        <div class="d-flex align-items-center mt-0"
+                            *ngIf="!this.FormData.get('isDeliveryAddressSame')?.value">
+
+
+                            <div class="col-sm-3 mt-0">
+                                <label for="staticEmail" class="lbsp">
+                                    Address Line1<span class="required">*</span>
+                                    <!-- <validation-error-msg class="col-sm-2" [erorrMsg]="formErrors.partyId">
+    </validation-error-msg> -->
+                                </label><br>
+                                <input type="text" class="custom-select-img custom-select-sm"
+                                    formControlName="Dline1" />
+                                <!-- <label for="staticEmail" class="lbsp"> {{partyIdPatch}} </label> -->
+                            </div>
+
+                            <div class="col-sm-3 mt-0">
+                                <label for="staticEmail" class="lbsp">
+                                    Address Line2<span class="required">*</span>
+                                    <!-- <validation-error-msg class="col-sm-2" [erorrMsg]="formErrors.partyId">
+    </validation-error-msg> -->
+                                </label><br>
+                                <input type="text" class="custom-select-img custom-select-sm"
+                                    formControlName="Dline2" />
+                                <!-- <label for="staticEmail" class="lbsp"> {{partyIdPatch}} </label> -->
+                            </div>
+
+                            <div class="col-sm-3 mt-0">
+                                <label for="staticEmail" class="lbsp">
+                                    Address Line3
+                                    <!-- <validation-error-msg class="col-sm-2" [erorrMsg]="formErrors.partyId">
+    </validation-error-msg> -->
+                                </label><br>
+                                <input type="text" class="custom-select-img custom-select-sm"
+                                    formControlName="Dline3" />
+                                <!-- <label for="staticEmail" class="lbsp"> {{partyIdPatch}} </label> -->
+                            </div>
+
+
+
+                            <div class="col-sm-3 mt-0">
+                                <label for="staticEmail" class="lbsp">
+                                    Address Line4
+                                    <!-- <validation-error-msg class="col-sm-2" [erorrMsg]="formErrors.partyId">
+    </validation-error-msg> -->
+                                </label><br>
+                                <input type="text" class="custom-select-img custom-select-sm"
+                                    formControlName="Dline4" />
+                                <!-- <label for="staticEmail" class="lbsp"> {{partyIdPatch}} </label> -->
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center mt-0"
+                            *ngIf="!this.FormData.get('isDeliveryAddressSame')?.value">
+                            <div class="col-sm-3 mt-0">
+                                <label for="staticEmail" class="lbsp">
+                                    PinCode<span class="required">*</span>
+                                    <!-- <validation-error-msg class="col-sm-2" [erorrMsg]="formErrors.partyId">
+    </validation-error-msg> -->
+                                </label><br>
+                                <input type="text" class="custom-select-img custom-select-sm"
+                                    formControlName="d_pincode" />
+                                <!-- <label for="staticEmail" class="lbsp"> {{partyIdPatch}} </label> -->
+                            </div>
+                            <div class="col-sm-3 mt-0">
+                                <label for="staticEmail" class="lbsp">
+                                    State<span class="required">*</span>
+                                    <!-- <validation-error-msg class="col-sm-2" [erorrMsg]="formErrors.partyId">
+    </validation-error-msg> -->
+                                </label><br>
+                                <input type="text" class="custom-select-img custom-select-sm"
+                                    formControlName="d_state" />
+                                <!-- <label for="staticEmail" class="lbsp"> {{partyIdPatch}} </label> -->
+                            </div>
+                            <div class="col-sm-3 mt-0">
+                                <label for="staticEmail" class="lbsp">
+                                    Country<span class="required">*</span>
+                                    <!-- <validation-error-msg class="col-sm-2" [erorrMsg]="formErrors.partyId">
+    </validation-error-msg> -->
+                                </label><br>
+                                <input type="text" class="custom-select-img custom-select-sm"
+                                    formControlName="d_country" />
+                                <!-- <label for="staticEmail" class="lbsp"> {{partyIdPatch}} </label> -->
+                            </div>
+                        </div>
+
+
+
+                        <div class="mt-4 my-1"><label class="bg-light" style="color: orange;">
+                                Order Details
+                            </label></div>
+                        <div class="d-flex align-items-center mt-0">
+
+
+                            <!-- <div class="col-sm-2">
+    <label for="staticEmail" class="lbsp">
+    Is Pushed in Tally? : -->
+                            <!-- <validation-error-msg [erorrMsg]="formErrors.isPrimaryAddress">
+    </validation-error-msg> -->
+                            <!-- <mat-error class="pl-1" *ngIf="FormData.get('isPrimaryAddress').errors ">
+    <mat-icon matTooltip="Please select type of id proof"><i class="bi bi-exclamation-triangle"
+    style="font-size: 0.75em;color:red;"></i></mat-icon>
+    </mat-error> -->
+                            <!-- </label>
+    <div class="">
+    <mat-slide-toggle formControlName="isPushedinTally" color="primary"></mat-slide-toggle>
+    </div> -->
+                            <!-- </div> -->
+                            <div class="col-sm-2 form-group">
+                                <label for="staticEmail" class="lbC my-2">
+                                    Priority<span class="required">*</span>
+                                    <!-- <validation-error-msg class="col-sm-2" [erorrMsg]="formErrors.partyId">
+    </validation-error-msg> -->
+                                </label><br>
+                                <select class="custom-select custom-select-sm" formControlName="priority">
+                                    <option value="">--Select--</option>
+                                    <!-- <optgroup *ngFor = 'let grp of individualData' label="{{grp.group}}"> -->
+                                    <option *ngFor='let item of priorityList' [value]="item.value">{{item.value}}
+                                    </option>
+                                    <!-- </optgroup> -->
+
+                                    <!-- <option *ngFor="let p of partyTypeList"> {{p}}</option> -->
+                                </select>
+                            </div>
+
+
+                            <div class="col-sm-8 form-group">
+                                <label for="staticEmail" class="lbC my-2">
+                                    Narration
+                                    <!-- <validation-error-msg class="col-sm-2" [erorrMsg]="formErrors.partyId">
+    </validation-error-msg> -->
+                                </label><br>
+                                <input type="text" class="custom-select-img custom-select-sm"
+                                    formControlName="narration" />
+                                <!-- <label for="staticEmail" class="lbsp"> {{partyIdPatch}} </label> -->
+                            </div>
+                        </div>
+
+
+
+                        <div class="row mt-4 my-1 " style="border-radius: 5px; color: orange; ">
+
+                            <div class="d-flex justify-content-between mt-2 align-items-center px-4">
+                                <label class="bg-light">
+                                    Stock Items
+                                </label>
+
+                                <!-- <div class="d-flex mr-auto ml-4" *ngIf="makerActions" >
+    <div><label for="staticEmail" class="lb">{{dataConstant.CERTIFICATE_TRACKING.ENABLE_CERT_TRACKING}}</label></div>
+    <div style="padding-top:3px;"><mat-slide-toggle
+    (change)="toggle()" [(ngModel)]="enableCertificate" class="ml-4"></mat-slide-toggle></div>
+    </div>-->
+
+                                <button type="button" class="btn btn-sm bg-light" (click)="addProduct()"><span
+                                        class="btnTxt1 span-text-spacing">Add More Conditions</span></button>
+
+                            </div>
+                        </div>
+
+                        <div class="">
+                            <!-- <table class="table table-borderless" *ngIf = "FormData.get('accountType').value == 2"> -->
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr class="bg-light ">
+                                        <th scope="col" class="th" style="width: 3%;">No.</th>
+                                        <th scope="col" class="th" style="width: 23%;">Items<span
+                                                class="required">*</span></th>
+                                        <th scope="col" class="th" style="width: 9%;">Category Type</th>
+                                        <th scope="col" class="th" style="width: 6%;">Unit<span
+                                                class="required">*</span></th>
+                                        <th scope="col" class="th" style="width: 7%;">Qty<span class="required">*</span>
+                                        </th>
+                                        <th scope="col" class="th" style="width: 9%;">Rate<span
+                                                class="required">*</span></th>
+                                        <th scope="col" class="th" style="width:12%;">Amount<span
+                                                class="required">*</span></th>
+                                        <th scope="col" class="th" style="width: 27%;">Remarks</th>
+                                        <th scope="col" class="th" style="width: 11%;">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <ng-container formArrayName="productArrayForm"
+                                        *ngFor="let apply of productArray.controls; let i=index">
+                                        <tr [formGroupName]="i" class="tr-striped">
+                                            <td class="td">
+                                                <label>{{i+1}}</label>
+                                            </td>
+                                            <td class="td">
+
+                                                <!-- <select class="custom-select custom-select-sm"
+    formControlName="conditionValue">
+    <option value="">--Select--</option> -->
+                                                <!-- <optgroup *ngFor = 'let grp of individualData' label="{{grp.group}}"> -->
+                                                <!-- <option *ngFor='let item of productList' [value]="item.productId">
+    {{item.name}}</option> -->
+                                                <!-- </optgroup> -->
+
+                                                <!-- <option *ngFor="let p of partyTypeList"> {{p}}</option> -->
+                                                <!-- </select> -->
+
+                                                <ng-multiselect-dropdown formControlName="conditionValue"
+                                                    class="customClass" [settings]="dropdownSettings3"
+                                                    [data]="productList" (onSelect)="productSelection($event, i)">
+                                                    <!-- [formControl]="categoryFilter" -->
+
+                                                </ng-multiselect-dropdown>
+
+                                            </td>
+
+                                            <td class="td">
+                                                <input type="text" class="custom-select-img custom-select-sm"
+                                                    formControlName="category" />
+                                            </td>
+                                            <td class="td">
+                                                <select class="custom-select custom-select-sm" formControlName="unit">
+                                                    <option value="">--Select--</option>
+                                                    <!-- <optgroup *ngFor = 'let grp of individualData' label="{{grp.group}}"> -->
+                                                    <option *ngFor='let item of unitList' [value]="item.value">
+                                                        {{item.value}}</option>
+                                                    <!-- </optgroup> -->
+
+                                                    <!-- <option *ngFor="let p of partyTypeList"> {{p}}</option> -->
+                                                </select>
+                                            </td>
+                                            <td class="td">
+                                                <input type="text" class="custom-select-img custom-select-sm"
+                                                    formControlName="quantity" />
+                                            </td>
+                                            <td class="td">
+                                                <input type="text" class="custom-select-img custom-select-sm"
+                                                    formControlName="rate" />
+                                            </td>
+                                            <td class="td">
+                                                <input type="text" class="custom-select-img custom-select-sm"
+                                                    formControlName="amount" />
+                                            </td>
+                                            <td class="td">
+                                                <input type="text" class="custom-select-img custom-select-sm"
+                                                    formControlName="remarks" />
+                                            </td>
+                                            <td class="td">
+
+                                                <button type="button" (click)="removeProduct(i)"
+                                                    class="btn btn-sm pr-4"><i class="bi bi-trash"
+                                                        style="font-size: 1.50em;color:red"></i> </button>
+
+                                            </td>
+                                    </ng-container>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end mt-2 mr-4 pr-4 p-2 my-3">
+                <!-- <div>
+    <button type="button" class="btn btnSe" (click)="cancel()">
+    Cancel
+    </button>
+    </div> -->
+                <div class="pl-4">
+                    <!-- <button type="submit" class="btn btnSn" [disabled]="FormData.invalid || clicked || pincodeControl.invalid" (click)="onSubmit2()"> -->
+                    <button type="submit" class="btn btnSn" [disabled]="FormData.invalid" (click)="onSubmit()">
+
+                        <!-- <span *ngIf="actionType !='view' && actionType !='edit'">Save</span> -->
+                        <span>Save</span>
+                    </button>
+                    <!-- <button (click)="check()"> 
+    check
+    </button> -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

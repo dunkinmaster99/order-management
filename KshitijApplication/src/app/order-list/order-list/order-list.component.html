@@ -1,0 +1,328 @@
+<div class="container-fluid">
+    <div class="mainrow">
+        <div class="card card-view card-radius px-0">
+            <div class="d-flex justify-content-between mt-2 align-items-center px-4">
+                <div class="all-acnt">
+                    <div class="d-flex align-items-center pt-3 pl-2 ">
+                        <h5>Order List</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex mx-4 my-2">
+                <div>
+                    <input (keyup)="applyFilter($event)" autocomplete="off" placeholder="Search" #input
+                        class="custom-select-img custom-select-sm search-input" />
+                </div>
+                <div class="px-2 pt-1 mr-auto" style="background-color: rgb(30, 4, 124);color: #fff;">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </div>
+                <div class="align-items-center">
+                    <button type="button" class="btn btnCust1" (click)="openForm('add', 0)">
+                        <i class="fa fa-plus-circle mr-2" aria-hidden="true"></i>
+                        Make New Order
+                    </button>
+                </div>
+                <div>
+                    <!-- <mat-form-field appearance="fill"> -->
+                    <!-- </mat-form-field> -->
+                </div>
+                <!-- <div class="ml-3">
+    <label class="lbsp mr-2">Tally Pushed Orders</label>
+    <mat-slide-toggle (change)="showOrdersInTally()" color="primary"></mat-slide-toggle>
+    </div> -->
+                <!-- <div class="align-items-center">
+    <button type="button" class="btn btnCust1" (click)="changeUserPasswordByAdmin()">
+    <i class="fa fa-plus-circle mr-2" aria-hidden="true"></i> 
+    Change User Password
+    </button>
+    </div> -->
+            </div>
+
+            <div class="card-body mt-0 pt-0">
+                <div class="row tableSet m-0 px-1">
+
+                    <mat-tab-group animationDuration="200ms">
+                        <mat-tab label="Orders">
+                            <table mat-table [dataSource]="dataSource" matSort style="font-size: 8px !important;"
+                                class="">
+                                <!-- Position Column -->
+                                <ng-container matColumnDef="orderNumber">
+                                    <th mat-header-cell mat-sort-header *matHeaderCellDef class="th"
+                                        style="position: static;">Order Number</th>
+                                    <td mat-cell *matCellDef="let element" class="td" [ngClass]="getRowClass(element)">
+                                        {{element.orderNumber}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="orderId">
+                                    <th mat-header-cell *matHeaderCellDef class="th"> Order Id </th>
+                                    <td mat-cell *matCellDef="let element" class="td" [ngClass]="getRowClass(element)">
+                                        {{element.orderId }} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="partyName">
+                                    <th mat-header-cell *matHeaderCellDef class="th"> Party Name </th>
+                                    <td mat-cell *matCellDef="let element" class="td" [ngClass]="getRowClass(element)">
+                                        {{element.customer.name }} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="orderDate">
+                                    <th mat-header-cell *matHeaderCellDef class="th"> Order Date</th>
+                                    <td mat-cell *matCellDef="let element" class="td" [ngClass]="getRowClass(element)">
+                                        {{element.orderDate | date: "dd/MM/yyyy" }} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="status">
+                                    <th mat-header-cell *matHeaderCellDef class="th"> Order Status</th>
+                                    <td mat-cell *matCellDef="let element" class="td" [ngClass]="getRowClass(element)">
+                                        {{element.status }} </td>
+                                </ng-container>
+
+                                <!-- <ng-container matColumnDef="label">
+    <th mat-header-cell *matHeaderCellDef class="th"> Label </th>
+    <td mat-cell *matCellDef="let element" class="td"> {{element.label}} </td>
+    </ng-container> -->
+
+                                <ng-container matColumnDef="actions">
+                                    <th mat-header-cell *matHeaderCellDef class="th"> Actions </th>
+                                    <td mat-cell *matCellDef="let element" class="td">
+                                        <div class="d-flex justify-content-center">
+                                            <!-- <div class="mr-2">
+    <button class="btn-none">
+    <a (click)="viewOrEdit('view', element)">
+    <i _ngcontent-ljj-c23="" aria-hidden="true" class="fa fa-eye"
+    style="color:rgb(53, 122, 250)"></i>
+    </a>
+    </button>
+    </div> -->
+                                            <div style="margin-top: -2px !important;">
+                                                <button class="btn-none">
+                                                    <a (click)="openForm('edit', element.userSLAId)">
+                                                        <i class="bi bi-pencil-fill "
+                                                            style="color:orange;font-size: 10px !important;"></i>
+                                                    </a> &nbsp;
+                                                </button>
+                                            </div>
+
+                                            <div style="margin-top: -2px !important;">
+                                                <button class="btn-none">
+                                                    <a (click)="deleteById(element.userSLAId)">
+                                                        <i class="bi bi-trash "
+                                                            style="color:red;font-size: 10px !important;"></i>
+                                                    </a> &nbsp;
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns1;sticky:false"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns1;">
+                                </tr>
+                                <div *ngIf="!this.dataSource.filteredData.length">
+                                    No data found.
+                                </div>
+                            </table>
+                            <mat-paginator #paginator class="bg-light" [pageSizeOptions]="[5, 10, 15]"
+                                showFirstLastButtons></mat-paginator>
+                        </mat-tab>
+
+                        <mat-tab label="Order Pending in Tally">
+                            <div class="mat-elevation-z8">
+                                <table mat-table [dataSource]="dataSourceNottally" matSort
+                                    style="font-size: 8px !important;" class="">
+                                    <!-- Position Column -->
+                                    <ng-container matColumnDef="orderNumber">
+                                        <th mat-header-cell mat-sort-header *matHeaderCellDef class="th"
+                                            style="position: static;">Order Number</th>
+                                        <td mat-cell *matCellDef="let element" class="td"> {{element.orderNumber}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="orderId">
+                                        <th mat-header-cell *matHeaderCellDef class="th"> Order Id </th>
+                                        <td mat-cell *matCellDef="let element" class="td"> {{element.orderId }} </td>
+                                    </ng-container>
+
+                                    <!-- <ng-container matColumnDef="label">
+    <th mat-header-cell *matHeaderCellDef class="th"> Label </th>
+    <td mat-cell *matCellDef="let element" class="td"> {{element.label}} </td>
+    </ng-container> -->
+
+                                    <ng-container matColumnDef="actions">
+                                        <th mat-header-cell *matHeaderCellDef class="th"> Actions </th>
+                                        <td mat-cell *matCellDef="let element" class="td">
+                                            <div class="d-flex justify-content-center">
+                                                <!-- <div class="mr-2">
+    <button class="btn-none">
+    <a (click)="viewOrEdit('view', element)">
+    <i _ngcontent-ljj-c23="" aria-hidden="true" class="fa fa-eye"
+    style="color:rgb(53, 122, 250)"></i>
+    </a>
+    </button>
+    </div> -->
+                                                <div style="margin-top: -2px !important;">
+                                                    <button class="btn-none">
+                                                        <a (click)="addInTally( element.id)">
+                                                            <i class="bi bi-plus "
+                                                                style="color:orange;font-size: 15px !important;"></i>
+                                                        </a> &nbsp;
+                                                    </button>
+                                                </div>
+
+                                                <div style="margin-top: -2px !important;">
+                                                    <button class="btn-none">
+                                                        <a (click)="deleteById(element.userSLAId)">
+                                                            <i class="bi bi-trash "
+                                                                style="color:red;font-size: 10px !important;"></i>
+                                                        </a> &nbsp;
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </ng-container>
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:false"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                                    </tr>
+                                    <div *ngIf="!this.dataSource.filteredData.length">
+                                        No data found.
+                                    </div>
+                                </table>
+                                <mat-paginator #paginator1 class="bg-light" [pageSizeOptions]="[5, 10, 15]"
+                                    showFirstLastButtons></mat-paginator>
+                            </div>
+                            <div clas="align-items-center">
+                                <button class="btn btnCust1 mt-4" (click)="downloadXml()">Download Multiple</button>
+                            </div>
+                        </mat-tab>
+
+                        <mat-tab label="Orders">
+                            <table mat-table [dataSource]="dataSource" matSort style="font-size: 8px !important;"
+                                class="">
+                                <!-- Position Column -->
+                                <ng-container matColumnDef="orderNumber">
+                                    <th mat-header-cell mat-sort-header *matHeaderCellDef class="th"
+                                        style="position: static;">Id</th>
+                                    <td mat-cell *matCellDef="let element" class="td" [ngClass]="getRowClass(element)">
+                                        {{element.orderNumber}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="orderId">
+                                    <th mat-header-cell *matHeaderCellDef class="th"> Event ID </th>
+                                    <td mat-cell *matCellDef="let element" class="td" [ngClass]="getRowClass(element)">
+                                        {{element.orderId }} </td>
+                                </ng-container>
+
+                                <!-- <ng-container matColumnDef="label">
+    <th mat-header-cell *matHeaderCellDef class="th"> Label </th>
+    <td mat-cell *matCellDef="let element" class="td"> {{element.label}} </td>
+    </ng-container> -->
+
+                                <ng-container matColumnDef="actions">
+                                    <th mat-header-cell *matHeaderCellDef class="th"> Actions </th>
+                                    <td mat-cell *matCellDef="let element" class="td">
+                                        <div class="d-flex justify-content-center">
+                                            <!-- <div class="mr-2">
+    <button class="btn-none">
+    <a (click)="viewOrEdit('view', element)">
+    <i _ngcontent-ljj-c23="" aria-hidden="true" class="fa fa-eye"
+    style="color:rgb(53, 122, 250)"></i>
+    </a>
+    </button>
+    </div> -->
+                                            <div style="margin-top: -2px !important;">
+                                                <button class="btn-none">
+                                                    <a (click)="openForm('edit', element.userSLAId)">
+                                                        <i class="bi bi-pencil-fill "
+                                                            style="color:orange;font-size: 10px !important;"></i>
+                                                    </a> &nbsp;
+                                                </button>
+                                            </div>
+
+                                            <div style="margin-top: -2px !important;">
+                                                <button class="btn-none">
+                                                    <a (click)="deleteById(element.userSLAId)">
+                                                        <i class="bi bi-trash "
+                                                            style="color:red;font-size: 10px !important;"></i>
+                                                    </a> &nbsp;
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:false"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                                </tr>
+                                <div *ngIf="!this.dataSource.filteredData.length">
+                                    No data found.
+                                </div>
+                            </table>
+                            <mat-paginator class="bg-light" [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons>
+                            </mat-paginator>
+                        </mat-tab>
+
+                        <mat-tab label="Orders">
+                            <table mat-table [dataSource]="dataSource" matSort style="font-size: 8px !important;"
+                                class="">
+                                <!-- Position Column -->
+                                <ng-container matColumnDef="orderNumber">
+                                    <th mat-header-cell mat-sort-header *matHeaderCellDef class="th"
+                                        style="position: static;">Id</th>
+                                    <td mat-cell *matCellDef="let element" class="td" [ngClass]="getRowClass(element)">
+                                        {{element.orderNumber}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="orderId">
+                                    <th mat-header-cell *matHeaderCellDef class="th"> Event ID </th>
+                                    <td mat-cell *matCellDef="let element" class="td" [ngClass]="getRowClass(element)">
+                                        {{element.orderId }} </td>
+                                </ng-container>
+
+                                <!-- <ng-container matColumnDef="label">
+    <th mat-header-cell *matHeaderCellDef class="th"> Label </th>
+    <td mat-cell *matCellDef="let element" class="td"> {{element.label}} </td>
+    </ng-container> -->
+
+                                <ng-container matColumnDef="actions">
+                                    <th mat-header-cell *matHeaderCellDef class="th"> Actions </th>
+                                    <td mat-cell *matCellDef="let element" class="td">
+                                        <div class="d-flex justify-content-center">
+                                            <!-- <div class="mr-2">
+    <button class="btn-none">
+    <a (click)="viewOrEdit('view', element)">
+    <i _ngcontent-ljj-c23="" aria-hidden="true" class="fa fa-eye"
+    style="color:rgb(53, 122, 250)"></i>
+    </a>
+    </button>
+    </div> -->
+                                            <div style="margin-top: -2px !important;">
+                                                <button class="btn-none">
+                                                    <a (click)="openForm('edit', element.userSLAId)">
+                                                        <i class="bi bi-pencil-fill "
+                                                            style="color:orange;font-size: 10px !important;"></i>
+                                                    </a> &nbsp;
+                                                </button>
+                                            </div>
+
+                                            <div style="margin-top: -2px !important;">
+                                                <button class="btn-none">
+                                                    <a (click)="deleteById(element.userSLAId)">
+                                                        <i class="bi bi-trash "
+                                                            style="color:red;font-size: 10px !important;"></i>
+                                                    </a> &nbsp;
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:false"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                                </tr>
+                                <div *ngIf="!this.dataSource.filteredData.length">
+                                    No data found.
+                                </div>
+                            </table>
+                            <mat-paginator class="bg-light" [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons>
+                            </mat-paginator>
+                        </mat-tab>
+                        <mat-paginator class="bg-light" [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons>
+                        </mat-paginator>
+                    </mat-tab-group>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<!-- Left navbar links -->
+<mat-toolbar color="primary" class="navbar">
+    <div class="mb-4 p-2">
+        <a class="nav-link" data-widget="pushmenu" role="button" (click)="openSidenav()">
+            <img src="../../../../assets/img/menu.png" style="width: 15px;">
+            <!-- <i class="fas fa-bars"></i> -->
+        </a>
+        <!-- <a class="nav-link">
+    <img src="assets/img/kshitij-logo.png" alt="User Avatar" width="130px" >
+    </a>
+    -->
+    </div>
+    <div class="mb-4" *ngIf="loggedin">
+        <span><button mat-raised-button color="warn" (click)="logOut()">
+                <mat-icon>power_settings_new</mat-icon>Log out
+            </button></span>
+    </div>
+    <!-- <div class="input-group">
+    <div class="form-inline">
+    <input type="search" id="form1" class="form-control" placeholder="search"/>
+    <label class="form-label" for="form1"></label>
+    </div>
+    <button type="button" class="btn btn-primary">
+    <i class="fas fa-search"></i>
+    </button>
+    </div> -->
+</mat-toolbar>
+<!--Left navbar links end-->
+
+<!-- Right navbar links -->

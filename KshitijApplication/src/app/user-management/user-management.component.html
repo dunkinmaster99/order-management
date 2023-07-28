@@ -1,0 +1,131 @@
+<div class="container-fluid">
+    <div class="mainrow">
+        <div class="card card-view card-radius px-0 bg-light">
+            <div class="d-flex justify-content-between mt-2 align-items-center px-4">
+                <div class="all-acnt">
+                    <div class="d-flex align-items-center">
+                        <h5><i class="fa fa-chevron-left" style="color:orange;"></i>
+                            <button class="backBtn bg-light" (click)="goBack()"> Back</button>
+                            Create New User
+                        </h5>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body mt-0 pt-0">
+                <div class="row m-0">
+                    <form [formGroup]="FormData">
+
+                        <div class="d-flex align-items-center ">
+
+                            <div class="col-sm-4 form-group">
+                                <label for="staticEmail" class="lbC my-2">
+                                    First Name<span class="required">*</span>
+                                    <!-- <validation-error-msg class="col-sm-2" [erorrMsg]="formErrors.partyId">
+    </validation-error-msg> -->
+                                </label><br>
+                                <input type="text" class="custom-select-img custom-select-sm"
+                                    formControlName="firstName" />
+                                <!-- <label for="staticEmail" class="lbsp"> {{partyIdPatch}} </label> -->
+                            </div>
+                            <div class="col-sm-4 form-group">
+                                <label for="staticEmail" class="lbC my-2">
+                                    Last Name<span class="required">*</span>
+                                    <!-- <validation-error-msg class="col-sm-2" [erorrMsg]="formErrors.partyId">
+    </validation-error-msg> -->
+                                </label><br>
+                                <input type="text" class="custom-select-img custom-select-sm"
+                                    formControlName="lastName" />
+                                <!-- <label for="staticEmail" class="lbsp"> {{partyIdPatch}} </label> -->
+                            </div>
+                            <div class="col-sm-4 form-group">
+                                <label for="staticEmail" class="lbC my-2">
+                                    Role<span class="required">*</span>
+                                    <!-- <validation-error-msg class="col-sm-2" [erorrMsg]="formErrors.partyId">
+    </validation-error-msg> -->
+                                </label><br>
+
+                                <select class="custom-select custom-select-sm" formControlName="role">
+                                    <option value="">--Select--</option>
+                                    <!-- <optgroup *ngFor = 'let grp of individualData' label="{{grp.group}}"> -->
+                                    <option *ngFor='let item of roleList' [value]="item.roleName">{{item.roleName}}
+                                    </option>
+                                    <!-- </optgroup> -->
+
+                                    <!-- <option *ngFor="let p of partyTypeList"> {{p}}</option> -->
+                                </select>
+
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="d-flex align-items-center mt-0">
+                            <div class="col-sm-4 form-group">
+                                <label for="staticEmail" class="lbC my-2">
+                                    Sub DepartMent
+                                    <!-- <validation-error-msg class="col-sm-2" [erorrMsg]="formErrors.partyId">
+    </validation-error-msg> -->
+                                </label><br>
+                                <input type="text" class="custom-select-img custom-select-sm"
+                                    formControlName="subDepartment" />
+                                <!-- <label for="staticEmail" class="lbsp"> {{partyIdPatch}} </label> -->
+                            </div>
+
+                            <div class="col-sm-4 form-group">
+                                <label for="staticEmail" class="lbC my-2">
+                                    User Name<span class="required">*</span>
+                                    <!-- <validation-error-msg class="col-sm-2" [erorrMsg]="formErrors.partyId">
+    </validation-error-msg> -->
+                                </label><br>
+                                <input type="text" class="custom-select-img custom-select-sm"
+                                    formControlName="userName" />
+                                <!-- <label for="staticEmail" class="lbsp"> {{partyIdPatch}} </label> -->
+                            </div>
+
+                            <div class="col-sm-3 mt-0">
+                                <label for="staticEmail" class="lbsp">
+                                    Password<span class="required">*</span>
+                                    <!-- <validation-error-msg class="col-sm-2" [erorrMsg]="formErrors.partyId">
+    </validation-error-msg> -->
+                                </label><br>
+                                <input type="password" class="custom-select-img custom-select-sm"
+                                    formControlName="password" />
+                                <!-- <label for="staticEmail" class="lbsp"> {{partyIdPatch}} </label> -->
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+
+
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end mt-2 mr-4 pr-4 p-2 my-3">
+                <!-- <div>
+    <button type="button" class="btn btnSe" (click)="cancel()">
+    Cancel
+    </button>
+    </div> -->
+                <div class="pl-4">
+                    <!-- <button type="submit" class="btn btnSn" [disabled]="FormData.invalid || clicked || pincodeControl.invalid" (click)="onSubmit2()"> -->
+                    <button type="submit" class="btn btnSn" [disabled]="FormData.invalid" (click)="onSubmit()">
+                        <!-- <span *ngIf="actionType !='view' && actionType !='edit'">Save</span> -->
+                        <span>Save</span>
+                    </button>
+                    <!-- <button (click)="check()"> 
+    check
+    </button> -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

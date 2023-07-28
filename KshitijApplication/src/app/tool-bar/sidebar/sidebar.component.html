@@ -1,0 +1,31 @@
+<div style="background-color: rgb(232, 232, 232)" class="">
+    <mat-nav-list class="sidenav-list">
+        <a mat-list-item routerLink="/order-list" (click)="onToggleClose()" *ngIf="getsidebarPermsissions[0]">
+            <mat-icon>dashboard</mat-icon>
+            <span>Admin DashBoard</span>
+        </a>
+        <a mat-list-item routerLink="/salesListing" (click)="onToggleClose()"
+            *ngIf="getsidebarPermsissions[0] || getsidebarPermsissions[1]">
+            <mat-icon>dashboard</mat-icon>
+            <span>Sales DashBoard</span>
+        </a>
+        <a mat-list-item routerLink="/manufacturingListing" (click)="onToggleClose()"
+            *ngIf="getsidebarPermsissions[0] || getsidebarPermsissions[2]">
+            <mat-icon>dashboard</mat-icon>
+            <span>Manufacturer DashBoard</span>
+        </a>
+        <a mat-list-item routerLink="/order-form" (click)="onToggleClose()"
+            *ngIf="getsidebarPermsissions[0] || getsidebarPermsissions[1]">
+            <mat-icon>input</mat-icon>
+            <span>Order-Form</span>
+        </a>
+        <a mat-list-item routerLink="/user-list" (click)="onToggleClose()" *ngIf="getsidebarPermsissions[0]">
+            <mat-icon>account_circle</mat-icon>
+            <span>User Management</span>
+        </a>
+        <a mat-list-item (click)="onToggleClose()">
+            <mat-icon>list</mat-icon>
+            <span>Others</span>
+        </a>
+    </mat-nav-list>
+</div>
